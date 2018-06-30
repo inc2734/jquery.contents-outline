@@ -53,7 +53,10 @@ import $ from 'jquery';
        * @return  {dom}  The tree
        */
       function _createTree(parent, heading, hierarchical = 2) {
-        const nest = parseInt(heading.prop('tagName').replace('H', '') - hierarchical);
+        let nest = parseInt(heading.prop('tagName').replace('H', '') - hierarchical);
+        if (isNaN(nest)) {
+          nest = 0;
+        }
 
         if (0 > nest) {
           return parent;
