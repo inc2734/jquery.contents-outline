@@ -26,6 +26,7 @@
     "uglify-js": "^3.4.8"
   },
   "scripts": {
+    "prepublish": "npm run build",
     "start": "npm run build",
     "cleanup:js": "rimraf dist && mkdir -p dist",
     "minify:js": "uglifyjs dist/jquery.contents-outline.js -o dist/jquery.contents-outline.min.js -mc",
