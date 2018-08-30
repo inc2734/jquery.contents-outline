@@ -13,22 +13,27 @@ import $ from 'jquery';
 
 ;(($) => {
   $.fn.contentsOutline = function(params) {
-    var params = $.extend({
+    params = $.extend({
       headings : $('h2, h3, h4, h5, h6'),
       moveToBefore1stHeading: true
     }, params);
 
+    const allHeadings = $('h2, h3, h4, h5, h6');
+
     return this.each((i, e) => {
-      var wrapper = $(e);
-      var co      = wrapper.find('.contents-outline');
+      const wrapper  = $(e);
+      const co       = wrapper.find('.contents-outline');
 
-      var outlines = $('<ol />');
+      let outlines = $('<ol />');
 
-      (function() {
-        params.headings.each((i, e) => {
+      (() => {
+        allHeadings.each((i, e) => {
           if (! $(e).attr('id')) {
             $(e).attr('id', 'co-index-' + i);
           }
+        });
+
+        params.headings.each((i, e) => {
           outlines = _createTree(outlines, $(e));
         });
 
