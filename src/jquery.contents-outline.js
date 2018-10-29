@@ -91,7 +91,7 @@ import $ from 'jquery';
       function _createItem(heading) {
         return $('<li />').append(
           $('<a />')
-            .text(heading.text())
+            .text(heading.text().replace(/[\n\r]/g, ''))
             .attr('href', '#' + heading.attr('id'))
         );
       }
