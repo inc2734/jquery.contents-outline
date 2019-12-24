@@ -18,8 +18,6 @@ import $ from 'jquery';
       moveToBefore1stHeading: true
     }, params);
 
-    const allHeadings = $('h2, h3, h4, h5, h6');
-
     return this.each((i, e) => {
       const wrapper  = $(e);
       const co       = wrapper.find('.contents-outline');
@@ -27,7 +25,7 @@ import $ from 'jquery';
       let outlines = $('<ol />');
 
       (() => {
-        allHeadings.each((i, e) => {
+        params.headings.each((i, e) => {
           if (! $(e).attr('id')) {
             $(e).attr('id', 'co-index-' + i);
           }
