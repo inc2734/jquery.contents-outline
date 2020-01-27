@@ -23,6 +23,9 @@ import $ from 'jquery';
       const co       = wrapper.find('.contents-outline');
 
       let outlines = $('<ol />');
+      params.headings.sort((a, b) => {
+        return a.offsetTop - b.offsetTop;
+      });
 
       (() => {
         params.headings.each((i, e) => {

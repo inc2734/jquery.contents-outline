@@ -16,22 +16,21 @@
     "README.md"
   ],
   "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "cpy-cli": "^3.0.0",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.0",
-    "rollup": "^1.27.14",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "uglify-js": "^3.7.2"
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "scripts": {
     "prepublish": "npm run build",
     "start": "npm run build",
-    "cleanup:js": "rimraf dist && mkdir -p dist",
-    "minify:js": "uglifyjs dist/jquery.contents-outline.js -o dist/jquery.contents-outline.min.js -mc",
-    "js:rollup": "rollup src/jquery.contents-outline.js -f=iife -c=rollup.config.js --dir dist --experimentalCodeSplitting",
-    "js": "npm run cleanup:js && npm run js:rollup && npm run minify:js",
+    "clean:js": "rimraf dist && mkdir -p dist",
+    "js:build": "webpack src/jquery.contents-outline.js -o dist/jquery.contents-outline.min.js --config webpack.config.js",
+    "js": "npm-run-all -s clean:js js:build",
     "build": "npm run js"
   }
 }
