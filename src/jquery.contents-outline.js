@@ -28,9 +28,21 @@ import $ from 'jquery';
       });
 
       (() => {
+        const search = (prefix, counter) => {
+          const target = $(`#${ prefix }${ counter }`);
+          if (0 < target.length) {
+            return search(prefix, counter + 1);
+          }
+          return counter;
+        };
+
+        let bulk = 0;
         params.headings.each((i, e) => {
           if (! $(e).attr('id')) {
-            $(e).attr('id', 'co-index-' + i);
+            const preCounter = bulk;
+            const counter = search('co-index-', preCounter);
+            $(e).attr('id', 'co-index-' + counter);
+            bulk = counter + 1;
           }
         });
 
