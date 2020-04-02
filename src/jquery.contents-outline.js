@@ -24,7 +24,7 @@ import $ from 'jquery';
 
       let outlines = $('<ol />');
       params.headings.sort((a, b) => {
-        return a.offsetTop - b.offsetTop;
+        return $(a).offset().top - $(b).offset().top;
       });
 
       (() => {
